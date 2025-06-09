@@ -34,17 +34,17 @@ interface Persona {
 }
 
 const personas: Persona[] = [
+  { id: "7", name: "Happy", role: "Joy & Positivity Guide" },
+  { id: "8", name: "Sad", role: "Emotional Support Guide" },
+  { id: "9", name: "Depressed", role: "Mental Health Companion" },
+  { id: "10", name: "Angry", role: "Emotional Regulation Coach" },
+  { id: "11", name: "Love", role: "Love" },
   { id: "1", name: "Empathy", role: "Emotional Intelligence Expert" },
   { id: "2", name: "Logic", role: "Analytical Thinker" },
   { id: "3", name: "Creativity", role: "Innovative Mind" },
   { id: "4", name: "Optimism", role: "Positive Psychology Coach" },
   { id: "5", name: "Caution", role: "Risk Management Specialist" },
   { id: "6", name: "Intuition", role: "Insight Specialist" },
-  { id: "7", name: "Happy", role: "Joy & Positivity Guide" },
-  { id: "8", name: "Sad", role: "Emotional Support Guide" },
-  { id: "9", name: "Depressed", role: "Mental Health Companion" },
-  { id: "10", name: "Angry", role: "Emotional Regulation Coach" },
-  { id: "11", name: "Love", role: "Love" },
 ]
 
 const mockResponses = {
