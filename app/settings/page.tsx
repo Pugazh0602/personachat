@@ -116,13 +116,7 @@ export default function SettingsPage() {
             <CardDescription>Manage your notification preferences</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <Label>Email notifications</Label>
-                <p className="text-sm text-gray-600">Receive updates via email</p>
-              </div>
-              <Switch />
-            </div>
+            
             <div className="flex items-center justify-between">
               <div>
                 <Label>Push notifications</Label>
@@ -130,13 +124,7 @@ export default function SettingsPage() {
               </div>
               <Switch />
             </div>
-            <div className="flex items-center justify-between">
-              <div>
-                <Label>Weekly insights</Label>
-                <p className="text-sm text-gray-600">Receive weekly conversation summaries</p>
-              </div>
-              <Switch defaultChecked />
-            </div>
+            
           </CardContent>
         </Card>
         {/* Privacy & Security */}
@@ -149,13 +137,7 @@ export default function SettingsPage() {
             <CardDescription>Manage your privacy and security settings</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div>
-                <Label>Data collection</Label>
-                <p className="text-sm text-gray-600">Allow anonymous usage analytics</p>
-              </div>
-              <Switch />
-            </div>
+           
             <div className="flex items-center justify-between">
               <div>
                 <Label>Conversation encryption</Label>

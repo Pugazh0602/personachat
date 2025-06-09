@@ -20,6 +20,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { useToast } from "@/hooks/use-toast"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 interface Persona {
   id: string
@@ -299,117 +300,119 @@ export default function PersonasPage() {
               Create Persona
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-2xl">
-            <DialogHeader>
+          <DialogContent className="max-w-2xl max-h-[90vh] sm:max-h-[85vh] flex flex-col bg-background p-6">
+            <DialogHeader className="mb-4">
               <DialogTitle>{editingPersona ? "Edit Persona" : "Create New Persona"}</DialogTitle>
               <DialogDescription>Define the characteristics and expertise of your AI persona.</DialogDescription>
             </DialogHeader>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
+            <ScrollArea className="flex-1 overflow-y-auto -mx-6 px-6">
+              <form onSubmit={handleSubmit} className="space-y-4 pb-6">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="name">Name</Label>
+                    <Input
+                      id="name"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      placeholder="e.g., Dr. Sarah Chen"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="role">Role/Title</Label>
+                    <Input
+                      id="role"
+                      value={formData.role}
+                      onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                      placeholder="e.g., AI Research Scientist"
+                      required
+                    />
+                  </div>
+                </div>
                 <div>
-                  <Label htmlFor="name">Name</Label>
+                  <Label htmlFor="personality">Personality</Label>
                   <Input
-                    id="name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g., Dr. Sarah Chen"
+                    id="personality"
+                    value={formData.personality}
+                    onChange={(e) => setFormData({ ...formData, personality: e.target.value })}
+                    placeholder="e.g., Analytical, curious, and methodical"
                     required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="role">Role/Title</Label>
+                  <Label htmlFor="expertise">Expertise (comma-separated)</Label>
                   <Input
-                    id="role"
-                    value={formData.role}
-                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                    placeholder="e.g., AI Research Scientist"
-                    required
-                  />
-                </div>
-              </div>
-              <div>
-                <Label htmlFor="personality">Personality</Label>
-                <Input
-                  id="personality"
-                  value={formData.personality}
-                  onChange={(e) => setFormData({ ...formData, personality: e.target.value })}
-                  placeholder="e.g., Analytical, curious, and methodical"
-                  required
-                />
-              </div>
-              <div>
-                <Label htmlFor="expertise">Expertise (comma-separated)</Label>
-                <Input
-                  id="expertise"
-                  value={formData.expertise}
-                  onChange={(e) => setFormData({ ...formData, expertise: e.target.value })}
-                  placeholder="e.g., Machine Learning, Neural Networks, Data Science"
-                  required
-                />
-              </div>
-              <div>
-                <Label htmlFor="description">Description</Label>
-                <Textarea
-                  id="description"
-                  value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  placeholder="Brief description of the persona's background and expertise"
-                  required
-                />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="communicationStyle">Communication Style</Label>
-                  <Input
-                    id="communicationStyle"
-                    value={formData.communicationStyle}
-                    onChange={(e) => setFormData({ ...formData, communicationStyle: e.target.value })}
-                    placeholder="e.g., Technical but accessible, uses analogies"
+                    id="expertise"
+                    value={formData.expertise}
+                    onChange={(e) => setFormData({ ...formData, expertise: e.target.value })}
+                    placeholder="e.g., Machine Learning, Neural Networks, Data Science"
                     required
                   />
                 </div>
                 <div>
-                  <Label htmlFor="knowledgeLevel">Knowledge Level</Label>
-                  <select
-                    id="knowledgeLevel"
-                    value={formData.knowledgeLevel}
-                    onChange={(e) => setFormData({ ...formData, knowledgeLevel: e.target.value as "beginner" | "intermediate" | "expert" })}
-                    className="w-full rounded-md border border-input bg-background px-3 py-2"
+                  <Label htmlFor="description">Description</Label>
+                  <Textarea
+                    id="description"
+                    value={formData.description}
+                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    placeholder="Brief description of the persona's background and expertise"
                     required
-                  >
-                    <option value="beginner">Beginner</option>
-                    <option value="intermediate">Intermediate</option>
-                    <option value="expert">Expert</option>
-                  </select>
+                  />
                 </div>
-              </div>
-              <div>
-                <Label htmlFor="responseFormat">Response Format</Label>
-                <Input
-                  id="responseFormat"
-                  value={formData.responseFormat}
-                  onChange={(e) => setFormData({ ...formData, responseFormat: e.target.value })}
-                  placeholder="e.g., Structured explanations with examples"
-                  required
-                />
-              </div>
-              <div>
-                <Label htmlFor="contextPreferences">Context Preferences (comma-separated)</Label>
-                <Input
-                  id="contextPreferences"
-                  value={formData.contextPreferences}
-                  onChange={(e) => setFormData({ ...formData, contextPreferences: e.target.value })}
-                  placeholder="e.g., Academic papers, Research findings, Technical documentation"
-                  required
-                />
-              </div>
-              <div className="flex justify-end gap-2">
-                <Button type="button" variant="outline" onClick={resetForm}>
-                  Cancel
-                </Button>
-                <Button type="submit">{editingPersona ? "Update" : "Create"} Persona</Button>
-              </div>
-            </form>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="communicationStyle">Communication Style</Label>
+                    <Input
+                      id="communicationStyle"
+                      value={formData.communicationStyle}
+                      onChange={(e) => setFormData({ ...formData, communicationStyle: e.target.value })}
+                      placeholder="e.g., Technical but accessible, uses analogies"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="knowledgeLevel">Knowledge Level</Label>
+                    <select
+                      id="knowledgeLevel"
+                      value={formData.knowledgeLevel}
+                      onChange={(e) => setFormData({ ...formData, knowledgeLevel: e.target.value as "beginner" | "intermediate" | "expert" })}
+                      className="w-full rounded-md border border-input bg-background px-3 py-2"
+                      required
+                    >
+                      <option value="beginner">Beginner</option>
+                      <option value="intermediate">Intermediate</option>
+                      <option value="expert">Expert</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="responseFormat">Response Format</Label>
+                  <Input
+                    id="responseFormat"
+                    value={formData.responseFormat}
+                    onChange={(e) => setFormData({ ...formData, responseFormat: e.target.value })}
+                    placeholder="e.g., Structured explanations with examples"
+                    required
+                  />
+                </div>
+                <div>
+                  <Label htmlFor="contextPreferences">Context Preferences (comma-separated)</Label>
+                  <Input
+                    id="contextPreferences"
+                    value={formData.contextPreferences}
+                    onChange={(e) => setFormData({ ...formData, contextPreferences: e.target.value })}
+                    placeholder="e.g., Academic papers, Research findings, Technical documentation"
+                    required
+                  />
+                </div>
+              </form>
+            </ScrollArea>
+            <div className="flex justify-end gap-2 p-6">
+              <Button type="button" variant="outline" onClick={resetForm}>
+                Cancel
+              </Button>
+              <Button type="submit">{editingPersona ? "Update" : "Create"} Persona</Button>
+            </div>
           </DialogContent>
         </Dialog>
       </div>
